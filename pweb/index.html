@@ -1,0 +1,746 @@
+<html>
+        <head>
+            <title>ScPrimeInfo</title>
+            <meta name="description" content="ScprimeStats is a service providing real-time statistics about the Scp decentralized storage network, including a Scp blockchain explorer, storage pricing, marketplace stats and mining data">
+            <meta name="keywords" content="Scp, Scprime, blockchain explorer, blockchain monitor, Scp explorer, Scp monitor, Scp navigator, Scp mining, Scprime transaction, Scp address, Scp mining pool">
+            <meta property="og:description" content="Charts, metrics and blockchain explorer for the Scprime decentralized storage network" />
+            <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="./css/tabelle.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src = "https://code.highcharts.com/highcharts.js"></script>
+    
+	  <style>
+       body, html {
+            height: 100%;
+        }
+        body {
+            font: 400 15px Lato, sans-serif;
+            line-height: 1.8;
+            color: #616161;
+        }
+        .jumbotron { 
+            background-color: #388297;
+            color: #ffffff;
+            padding: 0px 0px;
+        
+        }
+        .bg-grey {
+            background-color: #f6f6f6;
+        }
+        .logo {
+            font-size: 200px;
+        }
+        h2 {
+            font-size: 24px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        h4 {
+            font-size: 19px;
+            line-height: 1.375em;
+            font-weight: 400;
+            margin-bottom: 30px;
+        } 
+       
+           
+                }
+            </style>
+   
+			   </head>
+          
+        <body>
+		 <div class="header-outer">
+                <div class="header2">
+                    <a href="index.html" style="vertical-align: middle; padding: 0 0 0 25; text-decoration:none; line-height: 185px;">
+                        
+                        <IMG SRC="img/scp_header2.png" ALT="header" WIDTH=400 HEIGHT=73>
+                    </a>
+               	     <tr>
+                        <div style="position: absolute; right: 15px; top: 80px;">
+                            <input class="search-box-header" type="text2" name="search-header" id="search-header" placeholder="Search TX, block, address..." style="width: 500;
+                            height: 25;
+                            box-sizing: border-box;
+                            border: 1px solid #acacac;
+                            border-radius: 20px 0px 0px 5px;
+                            padding: 0 20;
+                            font-size: 70%;
+                            background-color: white;">
+                            
+                            <button name="searchHeader" style="height: 30; width: 30;
+                            padding: 0;
+                            background: #acacac;
+                            border: 0;
+                            -moz-border-radius: 0 5px 5px 0;
+                            -webkit-border-radius: 0 5px 5px 0;
+                            border-radius: 0 5px 5px 0;
+                            float: right;"><IMG SRC="img/new_searchicon_white.png" ALT="search" WIDTH=20 HEIGHT=20></button>
+							   
+                            <script>
+                                $("button[name = 'searchHeader']").click(function(){
+                                    query = document.getElementById("search-header").value
+                                    address = "https://explore.siaprimestats.com/navigator?search=" + query
+                                    window.location = address
+                                })
+                                $("#search-header").keyup(function(event) {
+                                    if (event.keyCode === 13) {
+                                        $("button[name = 'searchHeader']").click();
+                                    }
+                                });
+                            </script>
+						
+
+                        </div>
+                    </tr>
+            
+           
+        </div>
+<div style="background-color: #2074ee; height:15px;"></div>
+            <div style="background-color: #d7e3e1; height:10px;"></div>
+			
+			
+			
+			<div id="stats" class="container-fluid" style="background-color: #FFFFFF; color: #766F6D">
+        <div class="row">
+            <h2 style="margin: 50px 50px">
+           Network capacity<span style="font-size:50%" id="head2b"></span> - <span style="font-weight:700" id="head2"></span>
+				</h2>
+             <div class="col-sm-7">
+                    <div class="container" id = "container4" style = "width: 1000px; height: 400px; margin: 0px 0px 0px 0px"></div></p>
+               </div>
+			   
+    </div>
+	
+	 <div class="container-fluid" style="background-color: #FFFFFF; color: #766F6D ">
+        <div class="row">
+            <h2 style="margin: 50px 40px">
+			Used storage<span style="font-size:50%" id="head1b"></span> - <span style="font-weight:700" id="head1"></span>
+               </h2>
+            <div class="col-sm-7">
+             <div class="container" id = "container2" style = "width: 1000; height: 350px; margin: 0px 0px 0px 0px"></div>
+              </div>
+    </div>
+            <div class="container-fluid" id="download" style="background-color: #FFFFFF; color: #766F6D">
+        <div class="row">
+            <h2 style="margin: 100px 0px 50px 18px">
+               <span id="head3b">Active</span> providers online -<span style="font-weight:700" id="head3"></span>
+            </h2>
+           <div class="col-sm-7">
+                    <div class="container" id = "container6" style = "width: 1000px; height: 350px; margin: 0px 0px 0px 0px"></div>
+              </div>
+    </div>
+<div class="container-fluid" style="background-color: #FFFFFF; color: #766F6D">
+        <div class="row">
+            <h2 style="margin: 60px 0px 0px 10px">
+             Total hashrate - <span style="font-weight:700" id="head4"></span>
+                </h2>
+		 </div>
+			      
+       <div class="col-sm-7">
+       <div class="container" id = "container8" style = "width: 1030px; height: 400px; margin: 30px 0px 0px -60px"></div>
+                </div>
+            
+			<table class="table-fill" style="width: 100%; margin: 0px 0px 0px 0px">
+             <div style="background-color: #FFFFFF; width: 100%; min-height: 500px; border-radius: 25px; margin: 0px 0px 0px 0px; padding: 25px 0px">
+                    <tr>
+                        <th class="text-top"><font size="4"><strong>Block height</strong></font></th>
+                        <th class="text-left"><font size="3"><strong>Version</strong></font></th>
+						 <th class="text-left"><font size="3"><strong>Used storage</strong></font></th>
+						  <th class="text-left"><font size="3"><strong>Active providers</strong></font></th>
+			
+                    <tr> 
+                      
+                        </td> 
+                        <td id="table11">-</td>
+                        <td id="table12">-</td>
+						<td id="table13">-</td>
+						<td id="table14">-</td>
+						</tr>
+        </div>
+    </div>
+	
+<script>
+               // Button styles
+        $("#usedButtonActive, #totalButtonActive, #hostsButtonActive").css('background-color', '#28505b');
+        $("#usedButtonActive, #totalButtonActive, #hostsButtonActive").mouseover(function() {
+            $(this).css("background-color","#46b0ce")
+        }).mouseout(function() {
+            $(this).css("background-color","#28505b")
+        });
+
+        $.getJSON('./data/scprimenow.json', function(current) {
+            $.getJSON('./data/scprimeevo.json', function(evo) {
+                // Summary data (for headers)
+                var totalUsed = 0
+                var totalNetwork = 0
+                var totalHosts = 0
+                var totalHash = 0
+                var totalUsedOnline = 0
+                var totalNetworkOnline = 0
+                var totalHostsOnline = 0
+                for (var i = 0; i < current.length; i ++) {
+                    if (current[i].name != "SiaPrime-legacy") { // This is a fork that does not exist yet for sure
+                        totalUsed = totalUsed + current[i].usedstorage
+                        totalNetwork = totalNetwork + current[i].totalstorage
+                        totalHosts = totalHosts + current[i].activehosts
+                        totalUsedOnline = totalUsedOnline + current[i].usedstorage_online
+                        totalNetworkOnline = totalNetworkOnline + current[i].totalstorage_online
+                        totalHostsOnline = totalHostsOnline + current[i].onlinehosts
+                        totalHash = totalHash + current[i].hashrate
+                    }   
+                }
+                totalUsed = (totalUsed/1000000000000).toFixed(2)
+                totalUsedOnline = (totalUsedOnline/1000000000000).toFixed(2)
+                document.getElementById("head1").innerHTML = totalUsed + " TB"
+                totalNetwork = (totalNetwork/1000000000000000).toFixed(2)
+                totalNetworkOnline = (totalNetworkOnline/1000000000000000).toFixed(2)
+                document.getElementById("head2").innerHTML = totalNetwork + " PB"
+                document.getElementById("head3").innerHTML = totalHosts
+                totalHash = (totalHash/1000000000000000).toFixed(2)
+                document.getElementById("head4").innerHTML = totalHash + " PH/s"
+
+                // Button actions
+                $("#usedButtonOnline").click(function(){
+                    document.getElementById("head1").innerHTML = totalUsedOnline + " TB"
+                    document.getElementById("head1b").innerHTML = "(Online hosts)"
+                    $("#usedButtonOnline").css('background-color', '#28505b');
+                    $("#usedButtonActive").css('background-color', '#0a1215');
+                    $("#usedButtonOnline").mouseover(function() {
+                        $(this).css("background-color","#46b0ce")
+                    }).mouseout(function() {
+                        $(this).css("background-color","#28505b")
+                    });
+                    $("#usedButtonActive").mouseover(function() {
+                        $(this).css("background-color","#46b0ce")
+                    }).mouseout(function() {
+                        $(this).css("background-color","#0a1215")
+                    });
+                    renderChart1(current, "online")
+                    renderChart2(evo, "online")
+                });
+                $("#usedButtonActive").click(function(){
+                    document.getElementById("head1").innerHTML = totalUsed + " TB"
+                    document.getElementById("head1b").innerHTML = "(Active hosts)"
+                    $("#usedButtonActive").css('background-color', '#28505b');
+                    $("#usedButtonOnline").css('background-color', '#0a1215');
+                    $("#usedButtonActive").mouseover(function() {
+                        $(this).css("background-color","#46b0ce")
+                    }).mouseout(function() {
+                        $(this).css("background-color","#28505b")
+                    });
+                    $("#usedButtonOnline").mouseover(function() {
+                        $(this).css("background-color","#46b0ce")
+                    }).mouseout(function() {
+                        $(this).css("background-color","#0a1215")
+                    });
+                    renderChart1(current, "active")
+                    renderChart2(evo, "active")
+                });
+                $("#totalButtonOnline").click(function(){
+                    document.getElementById("head2").innerHTML = totalNetworkOnline + " TB"
+                    document.getElementById("head2b").innerHTML = "(Online hosts)"
+                    $("#totalButtonOnline").css('background-color', '#28505b');
+                    $("#totalButtonActive").css('background-color', '#0a1215');
+                    $("#totalButtonOnline").mouseover(function() {
+                        $(this).css("background-color","#46b0ce")
+                    }).mouseout(function() {
+                        $(this).css("background-color","#28505b")
+                    });
+                    $("#totalButtonActive").mouseover(function() {
+                        $(this).css("background-color","#46b0ce")
+                    }).mouseout(function() {
+                        $(this).css("background-color","#0a1215")
+                    });
+                    renderChart3(current, "online")
+                    renderChart4(evo, "online")
+                });
+                $("#totalButtonActive").click(function(){
+                    document.getElementById("head2").innerHTML = totalNetwork + " TB"
+                    document.getElementById("head2b").innerHTML = "(Active hosts)"
+                    $("#totalButtonActive").css('background-color', '#28505b');
+                    $("#totalButtonOnline").css('background-color', '#0a1215');
+                    $("#totalButtonActive").mouseover(function() {
+                        $(this).css("background-color","#46b0ce")
+                    }).mouseout(function() {
+                        $(this).css("background-color","#28505b")
+                    });
+                    $("#totalButtonOnline").mouseover(function() {
+                        $(this).css("background-color","#46b0ce")
+                    }).mouseout(function() {
+                        $(this).css("background-color","#0a1215")
+                    });
+                    renderChart3(current, "active")
+                    renderChart4(evo, "active")
+                });
+                $("#hostsButtonOnline").click(function(){
+                    document.getElementById("head3").innerHTML = totalHostsOnline
+                    document.getElementById("head3b").innerHTML = "Online"
+                    $("#hostsButtonOnline").css('background-color', '#28505b');
+                    $("#hostsButtonActive").css('background-color', '#0a1215');
+                    $("#hostsButtonOnline").mouseover(function() {
+                        $(this).css("background-color","#46b0ce")
+                    }).mouseout(function() {
+                        $(this).css("background-color","#28505b")
+                    });
+                    $("#hostsButtonActive").mouseover(function() {
+                        $(this).css("background-color","#46b0ce")
+                    }).mouseout(function() {
+                        $(this).css("background-color","#0a1215")
+                    });
+                    renderChart5(current, "online")
+                    renderChart6(evo, "online")
+                });
+                $("#hostsButtonActive").click(function(){
+                    document.getElementById("head3").innerHTML = totalHosts
+                    document.getElementById("head3b").innerHTML = "Active"
+                    $("#hostsButtonActive").css('background-color', '#28505b');
+                    $("#hostsButtonOnline").css('background-color', '#0a1215');
+                    $("#hostsButtonActive").mouseover(function() {
+                        $(this).css("background-color","#46b0ce")
+                    }).mouseout(function() {
+                        $(this).css("background-color","#28505b")
+                    });
+                    $("#hostsButtonOnline").mouseover(function() {
+                        $(this).css("background-color","#46b0ce")
+                    }).mouseout(function() {
+                        $(this).css("background-color","#0a1215")
+                    });
+                    renderChart5(current, "active")
+                    renderChart6(evo, "active")
+                });
+
+      // Summary table
+                document.getElementById("table11").innerHTML = current[0].height
+                document.getElementById("table12").innerHTML = current[0].version
+                document.getElementById("table13").innerHTML = (current[0].usedstorage/1000000000000).toFixed(2) + " TB"
+                document.getElementById("table14").innerHTML = current[0].activehosts
+               
+
+
+               
+               // Chart 1: ScPrime_evo_network_all capacity
+                renderChart4(evo, "active")
+                function renderChart4(evo, hostType) {
+                  
+                    var processed_json3 = []
+                  
+                    var now = new Date;
+                    var today = (Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate()))
+                    for (i = 0; i < evo.length; i++){
+                        if (hostType == "active") {
+                           
+                            processed_json3.push([evo[i].time*1000, parseFloat((evo[i].primetotal/1000000000000).toFixed(2))]);
+                            
+                        } 
+                    }
+                    dataChart =  [{
+                        type: 'area',
+                        name: 'SCPrime graph',
+                        data: processed_json3,
+                        tooltip: {valueSuffix: ' TB'}
+                       
+                    }]
+                    var colors = [
+                      
+                        '#4a87df', // ScPrime
+                         
+                    ]
+                    var plotLines = [{
+                        color: '#fff', // Color value
+                        dashStyle: 'dash', // Style of the plot line. Default to solid
+                        value: 1574467200000, // Value of where the line will appear
+                        width: 2, // Width of the line
+                        label: { 
+                            text: 'Host databases refreshed (*)', // Content of the label.
+                            align: 'left', // Positioning of the label.
+                            style: {
+                                color: '#fff'
+                            },
+                            x: -12,
+                            y: 5
+                        }
+                    }]
+                    $('#container4').highcharts(renderEvo(dataChart, colors, suffix, plotLines), function(chart) {
+                        chart.xAxis[0].setExtremes((today-37776000000),now);
+                        
+                        chart.renderer.image('', 15, 20, 80, 20)
+                        .add();
+                    });
+                }
+				
+				
+                                
+                // Chart 2: Scprime_evo_used_storage
+                renderChart2(evo, "active")
+                function renderChart2(evo, hostType) {
+                
+                    var processed_json3 = []
+                   
+                    var now = new Date;
+                    var today = (Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate()))
+                    for (i = 0; i < evo.length; i++){
+                        if (hostType == "active") {
+                            
+                            processed_json3.push([evo[i].time*1000, parseFloat((evo[i].primeused/1000000000000).toFixed(2))]);
+                           
+                        } else {
+                           
+                            processed_json3.push([evo[i].time*1000, parseFloat((evo[i].primeused_online/1000000000000).toFixed(2))]);
+                            
+                        }
+                    }
+                    dataChart =  [{
+                      
+                    
+                        type: 'area',
+                        name: 'ScPrime graph',
+                        data: processed_json3,
+                        tooltip: {valueSuffix: ' TB'}
+                  
+                        
+                    }]
+                    var colors = [
+                        '#4a87df', // ScPrime
+                        ]
+                    var plotLines = [{
+                        color: '#FFFFFF', // Color value
+                        dashStyle: 'dash', // Style of the plot line. Default to solid
+                        value: 1574467200000, // Value of where the line will appear
+                        width: 2, // Width of the line
+                        label: { 
+                            text: 'Host databases refreshed (*)', // Content of the label.
+                            align: 'left', // Positioning of the label.
+                            style: {
+                                color: '#FFFFFF'
+                            },
+                            x: -12,
+                            y: 5
+                        }
+                    }]
+                    $('#container2').highcharts(renderEvo(dataChart, colors, suffix, plotLines), function(chart) {
+                        chart.xAxis[0].setExtremes((today-37776000000),now);
+                       chart.renderer.image('', 10, 20, 80, 20)
+                        .add();
+                    });
+                }
+
+                 // Chart 3: Scprime_evo_active_providers
+                renderChart6(evo, "active")
+                function renderChart6(evo, hostType) {
+                  
+                    var processed_json3 = []
+                    
+                    var now = new Date;
+                    var today = (Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate()))
+                    for (i = 0; i < evo.length; i++){
+                        if (hostType == "active") {
+                            
+                            processed_json3.push([evo[i].time*1000, evo[i].primehosts]);
+                           
+                        } else {
+                           
+                           
+                            processed_json3.push([evo[i].time*1000, evo[i].primehosts_online]);
+                            
+                        }
+                    }
+                    dataChart =  [{
+                       
+                  
+                        type: 'area',
+                        name: 'ScPrime graph',
+                        data: processed_json3,
+                        tooltip: {valueSuffix: ' hosts'}
+                    
+                        
+                    }]
+                    var colors = [
+                        
+                        '#4a87df', // ScPrime
+                     
+                    ]
+                    var plotLines = [{
+                        color: '#fff', // Color value
+                        dashStyle: 'dash', // Style of the plot line. Default to solid
+                        value: 1574467200000, // Value of where the line will appear
+                        width: 2, // Width of the line
+                        label: { 
+                            text: 'Host databases refreshed (*)', // Content of the label.
+                            align: 'left', // Positioning of the label.
+                            style: {
+                                color: '#fff'
+                            },
+                            x: -12,
+                            y: 5
+                        }
+                    }]
+                    $('#container6').highcharts(renderEvo(dataChart, colors, suffix, plotLines), function(chart) {
+                        chart.xAxis[0].setExtremes((today-37776000000),now);
+                        chart.renderer.image('', 15, 20, 80, 20)
+                        .add();
+                    });
+                }
+
+
+                // Chart 3: Scprime_evo_active_providers_online
+                var suffix = " PH/s"
+                var data0 = parseFloat((current[0].hashrate/1000000000000000).toFixed(2))
+                
+                dataChart = [{
+                   
+                        name: 'ScPrime graph',
+                        data: [0, data0]
+                  
+                       
+                    }]
+                var colors = [
+                  
+                    '#4a87df', // ScPrime
+                  
+                ]
+                
+                $('#container7').highcharts(renderColumn(dataChart, colors, suffix), function(chart) {
+                    chart.renderer.image('', 15, 20, 80, 20)
+                        .add()
+                });
+
+                // Chart 4: Scprime_evo_total_hashrate
+                var suffix = " PH/s"
+                
+                var processed_json3 = []
+             
+                var now = new Date;
+                var today = (Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate()))
+                for (i = 0; i < evo.length; i++){
+                   
+                    processed_json3.push([evo[i].time*1000, parseFloat((evo[i].primehash/1000000000000000).toFixed(2))]);
+                  
+                }
+                dataChart =  [{
+                   
+               
+                    type: 'area',
+                    name: 'ScPrime graph',
+                    data: processed_json3,
+                    tooltip: {valueSuffix: ' PH/s'}
+              
+                }]
+                var colors = [
+                 
+                    '#4a87df', // ScPrime
+                    
+                ]
+                $('#container8').highcharts(renderEvo(dataChart, colors, suffix), function(chart) {
+                    chart.xAxis[0].setExtremes((today-37776000000),now);
+                    chart.renderer.image('', 15, 20, 80, 20)
+                    .add();
+                });
+
+
+
+                function renderEvo(dataChart, colors, suffix, plotLines) {
+                    var options = {
+                        chart: {
+                            backgroundColor: '#FFFFFF',
+                            zoomType: 'x',
+                            resetZoomButton: {
+                                position: {
+                                    align: 'right', // by default
+                                    verticalAlign: 'top', // by default
+                                    x: -10,
+                                    y: 10
+                                },
+                                relativeTo: 'chart',
+                                theme: {
+                                    fill: '#a4c3ef',
+                                    stroke: '#5383d5',
+                                    style: {
+                                        color: '#3f4042'
+                                    },
+                                    r: 0,
+                                    states: {
+                                        hover: {
+                                            fill: '#5383d5',
+                                            style: {
+                                                color: 'white'
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        title: {
+                            text: '<b>ScPrime Use Over Time</b>',
+                            style: {
+                                color: "#ccc",
+                                fontFamily: 'Lato',
+                                fontSize:'20px',
+                                fontWeight: '900'
+                            }
+                        },
+                        subtitle: {
+                            text: document.ontouchstart === undefined ?
+                                '<i> ' : 'Pinch the chart to zoom in</i>'
+                        },
+                        colors: colors,
+                        xAxis: {
+                            type: 'datetime',
+                            labels: {
+                                style: {
+                                  color: '#000000'
+                                }
+                            },
+                            gridLineWidth: 1,
+                            gridLineDashStyle: 'dot' ,
+                            crosshair: true,
+                            plotLines: plotLines               
+                        },
+                        yAxis: {
+                            maxPadding: 0,
+                            minPadding: 100,
+                            //maxPadding: 2,
+                            floor: 0,
+                            //ceiling: 100,
+                            title: {
+                                text: suffix,
+                                style: {
+                                  color: '#000000'
+                                }
+                            },
+                            labels: {
+                                style: {
+                                  color: '#000000'
+                                }
+                            }
+                        },
+                        legend: {
+                            enabled: true,
+                            itemStyle: {
+                                color: '#ccc'
+                            }
+                        },
+                        tooltip: {
+                            shared: true
+                        },
+                        plotOptions: {
+                            area: {
+                                stacking: 'normal',
+                                fillOpacity: 0.5,
+                                marker: {
+                                    radius: 0
+                                },
+                                lineWidth: 2,
+                                states: {
+                                    hover: {
+                                        lineWidth: 1
+                                    }
+                                },
+                                threshold: null,
+                                
+                            }
+                        },
+                        credits:{enabled:false},
+                        series: dataChart
+                    }
+                    return options
+                }
+
+                function renderColumn(dataChart, colors, suffix) {
+                    var options = {
+                        chart: {
+                            type: 'column',
+                            backgroundColor: '#000000',
+                            spacingTop: 27
+                        },
+                        title: {
+                            text: '<b>Current distribution</b>',
+                            style: {
+                                color: "#ccc",
+                                fontFamily: 'Lato',
+                                fontSize:'20px',
+                                fontWeight: '900'
+                            }
+                        },
+                        colors: colors,
+                        yAxis: [{
+                            floor: 0,
+                            title: {
+                                text: suffix,
+                                style: {
+                                  color: '#ccc'
+                                }
+                            },
+                            labels: {
+                                style: {
+                                  color: '#ccc'
+                                }
+                            },
+                        }],
+
+                        xAxis: {
+                            categories: ['Blake2b-Sia', 'Blake2b'],
+                            crosshair: true,
+                            labels: {
+                                style: {
+                                  color: '#ccc'
+                                }
+                            },
+                        },
+                        legend: {
+                            enabled: true,
+                            itemStyle: {
+                                color: '#ccc'
+                            }
+                        },
+                        tooltip: {
+                            shared: true,
+                            pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}' + suffix + '</b><br/>'
+                        },
+                        plotOptions: {
+                            column: {
+                                stacking: 'normal',
+                                pointPadding: 0.1,
+                                borderWidth: 1
+                            }
+                        },
+                        credits:{enabled:false},
+                        series: dataChart
+                    }
+                    return options
+                }
+            })
+        })
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            // Add smooth scrolling to all links in navbar + footer link
+            $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+          
+                // Prevent default anchor click behavior
+                event.preventDefault();
+            
+                // Store hash
+                var hash = this.hash;
+            
+                // Using jQuery's animate() method to add smooth page scroll
+                // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 900, function(){
+                    // Add hash (#) to URL when done scrolling (default click behavior)
+                    window.location.hash = hash;
+                    });
+                } // End if
+            });
+        })
+    </script>
+  
+
+</html>

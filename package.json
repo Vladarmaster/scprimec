@@ -1,0 +1,21 @@
+{
+  "name": "scprimeinfo",
+  "version": "1.1.0",
+  "description": "Network statistics for the Scprime blockchain network",
+  "main": "scprimec.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "scprime",
+    "blockchain"
+  ],
+  "author": "vladarmaster",
+  "license": "AGPL-3.0-or-later",
+  "homepage": "https://github.com/vladarmaster",
+  "dependencies": {
+    "babel-runtime": "^6.26.0",
+    "cron": "^1.7.2",
+    "siaprime.js": "0.0.5"
+  }
+}
