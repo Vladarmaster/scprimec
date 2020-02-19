@@ -6,6 +6,7 @@ The code is used,changed-modified and adapted for ScPrime blockchain network.
 
 ## Requirements
 * Node.js installed
+* The `explorer` module of the daemons needs to be enabled
 * Scprime daemon running to be analyzed 
 * Filing instaled 
 
