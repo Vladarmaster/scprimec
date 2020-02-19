@@ -1,4 +1,4 @@
-# ScPrime
+# ScPrimec
 
 Network data collector for ScPrime blockchain.
 Scprimec is an script that collects key stats of scprime client.
