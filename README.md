@@ -5,6 +5,7 @@ Scprimec is an script that collects key stats of scprime client.
 The code is used,changed-modified and adapted for ScPrime blockchain network. 
 
 The original code can be found at: https://github.com/hakkane84/pan-sia
+
 I would like to thank Salva Herrera- he did great statistic for SIA blockchain network.
 
 I would also like to thank Voldemort.
