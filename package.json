@@ -1,5 +1,5 @@
 {
-  "name": "scprimeinfo",
+  "name": "scprimec",
   "version": "1.1.0",
   "description": "Network statistics for the Scprime blockchain network",
   "main": "scprimec.js",
