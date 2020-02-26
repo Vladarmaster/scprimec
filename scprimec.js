@@ -8,7 +8,7 @@ var cron = require('./node_modules/cron');
 var siaprime = require('./node_modules/siaprime.js');
 
 
-// Array of clients to watch. You need to configure the ports to your setup
+// Array of clients to watch. You need to configure the ports to your setup.
 var daemons = [
     {
         name: "SiaPrime",
