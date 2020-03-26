@@ -1,7 +1,7 @@
 # Scprimec
 
 Network data collector for ScPrime blockchain.
-Scprimec is a script that collects key stats of scprime client.
+Scprimec is a script that collects key stats for scprime client.
 The code is used,changed-modified and adapted for ScPrime blockchain network. 
 
 ## Requirements
