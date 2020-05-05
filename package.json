@@ -1,7 +1,7 @@
 {
   "name": "scprimec",
   "version": "1.1.0",
-  "description": "Network statistics for the Scprime blockchain network",
+  "description": "Network statistics for Scprime blockchain network",
   "main": "scprimec.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
